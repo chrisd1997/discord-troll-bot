@@ -1,0 +1,11 @@
+{
+    "name": "frl-bot",
+    "version": "1.0.0",
+    "description": "The Official FRL Bot",
+    "main": "bot.js",
+    "author": "Chris Dekker",
+    "dependencies": {
+        "discord.js": "^12.5.3",
+        "winston": "^3.3.3"
+    }
+}
