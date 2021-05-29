@@ -35,9 +35,9 @@ bot.on('voiceStateUpdate', (_, e) => {
         const channelMembers = e.channel.members.map(member => member.user.id);
         const filteredUsers = users.filter(user => !channelMembers.includes(user));
 
-        const ONE_HOUR = 60 * 60 * 1000;
+        const TEN_MINUTES = 60 * 10000;
 
-        if (!lastSend || ((new Date) - lastSend) > ONE_HOUR) {
+        if (!lastSend || ((new Date) - lastSend) > TEN_MINUTES) {
             lastSend = new Date().getTime();
 
             filteredUsers.forEach(user => {
