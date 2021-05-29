@@ -32,7 +32,12 @@ bot.on('voiceStateUpdate', (_, e) => {
         e.channel.join()
         .then(d => {
             d.on('speaking', (member, speaking) => {
-                if (member.id !== whiteListed && speaking.bitfield && !playingSound) {
+                if (
+                    member.id !== whiteListed &&
+                    member.id !== botID &&
+                    speaking.bitfield &&
+                    !playingSound
+                ) {
                     playingSound = true;
 
                     const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
