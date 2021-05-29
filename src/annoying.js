@@ -47,9 +47,9 @@ bot.on('voiceStateUpdate', (_, e) => {
 
                     dispatcher.on('finish', () => {
                         playingSound = false;
-                    })
+                    });
                 }
-            })
+            });
         });
     }
 });
