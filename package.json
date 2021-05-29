@@ -2,7 +2,7 @@
     "name": "frl-bot",
     "version": "1.0.0",
     "description": "The Official FRL Bot",
-    "main": "bot.js",
+    "main": "src/move.js",
     "author": "Chris Dekker",
     "dependencies": {
         "discord.js": "^12.5.3",

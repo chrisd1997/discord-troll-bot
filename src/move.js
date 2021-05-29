@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const logger = require('winston');
-const auth = require('./auth.json');
+const auth = require('../auth.json');
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
