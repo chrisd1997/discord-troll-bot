@@ -22,13 +22,9 @@ let lastSend = null;
 bot.once('ready', () => {
     logger.info('Connected');
 
-    bot.user.setPresence({
-        status: "online",
-        activity: {
-            type: "PLAYING",
-            name: "managing this shitty team",
-        },
-    })
+    bot.user.setActivity("managing this shitty team", {
+        type: "PLAYING",
+    });
 });
 
 bot.login(auth.token);
