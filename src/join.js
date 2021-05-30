@@ -22,8 +22,9 @@ let lastSend = null;
 bot.once('ready', () => {
     logger.info('Connected');
 
-    bot.user.setActivity("managing this shitty team", {
-        type: "PLAYING",
+    bot.user.setActivity("this shitty team", {
+        type: "WATCHING",
+        url: "https://www.youtube.com/watch?v=gkTb9GP9lVI",
     });
 });
 
