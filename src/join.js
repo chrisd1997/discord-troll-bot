@@ -21,6 +21,11 @@ let lastSend = null;
 
 bot.once('ready', () => {
     logger.info('Connected');
+
+    bot.user.setActivity("managing this shitty team", {
+        type: "STREAMING",
+        url: "https://www.youtube.com/watch?v=gkTb9GP9lVI",
+    })
 });
 
 bot.login(auth.token);
