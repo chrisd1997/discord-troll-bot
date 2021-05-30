@@ -22,9 +22,12 @@ let lastSend = null;
 bot.once('ready', () => {
     logger.info('Connected');
 
-    bot.user.setActivity("managing this shitty team", {
-        type: "PLAYING",
-        url: "https://www.youtube.com/watch?v=gkTb9GP9lVI",
+    bot.user.setPresence({
+        status: "online",
+        activity: {
+            type: "PLAYING",
+            name: "managing this shitty team",
+        },
     })
 });
 
