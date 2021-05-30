@@ -23,7 +23,7 @@ bot.once('ready', () => {
     logger.info('Connected');
 
     bot.user.setActivity("managing this shitty team", {
-        type: "CUSTOM_STATUS",
+        type: "PLAYING",
         url: "https://www.youtube.com/watch?v=gkTb9GP9lVI",
     })
 });
