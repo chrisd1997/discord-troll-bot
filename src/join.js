@@ -103,42 +103,44 @@ bot.on('voiceStateUpdate', (_, e) => {
 });
 
 bot.on('presenceUpdate', (oldMember, newMember) => {
-    const user = users_by_id.find((user) => user.id === oldMember.userID);
+    if (oldMember) {
+        const user = users_by_id.find((user) => user.id === oldMember.userID);
 
-    if (
-        user &&
-        (
-            oldMember.status === 'offline' ||
-            oldMember.status === 'online'
-        ) &&
-        (
-            newMember.status === 'offline' ||
-            newMember.status === 'online'
-        )
-    ) {
-        const oldTime = timeDB.find((time) => time.id === oldMember.userID);
-
-        if (oldTime.status !== null) {
-            // logger.info("-------------");
-            // logger.info(`USER: ${user.name}`);
-            // logger.info(`TIME START: ${moment.unix(oldTime.start).format('DD-MM-YYYY H:mm:s')}`);
-            // logger.info(`TIME NOW: ${moment().format('DD-MM-YYYY H:mm:s')}`);
-            // logger.info(`ELAPSED: ${moment(oldTime.start).from(moment().unix(), true)}`);
-            // logger.info(`NEW STATUS: ${newMember.status}`);
-            // logger.info("-------------");
-
-            const message = `-------------\nUSER: ${user.name}\nTIME START: ${moment.unix(oldTime.start).format('DD-MM-YYYY H:mm:s')}\nTIME NOW: ${moment().format('DD-MM-YYYY H:mm:s')}\nELAPSED: ${moment(oldTime.start).from(moment().unix(), true)}\nNEW STATUS: ${newMember.status}\n-------------`;
-       
-            (async () => {
-                const channel = await bot.channels.fetch(WATCH_CHANNEL_ID);
-                channel.send(message);
-            })();
+        if (
+            user &&
+            (
+                oldMember.status === 'offline' ||
+                oldMember.status === 'online'
+            ) &&
+            (
+                newMember.status === 'offline' ||
+                newMember.status === 'online'
+            )
+        ) {
+            const oldTime = timeDB.find((time) => time.id === oldMember.userID);
+    
+            if (oldTime.status !== null) {
+                // logger.info("-------------");
+                // logger.info(`USER: ${user.name}`);
+                // logger.info(`TIME START: ${moment.unix(oldTime.start).format('DD-MM-YYYY H:mm:s')}`);
+                // logger.info(`TIME NOW: ${moment().format('DD-MM-YYYY H:mm:s')}`);
+                // logger.info(`ELAPSED: ${moment(oldTime.start).from(moment().unix(), true)}`);
+                // logger.info(`NEW STATUS: ${newMember.status}`);
+                // logger.info("-------------");
+    
+                const message = `-------------\nUSER: ${user.name}\nTIME START: ${moment.unix(oldTime.start).format('DD-MM-YYYY H:mm:s')}\nTIME NOW: ${moment().format('DD-MM-YYYY H:mm:s')}\nELAPSED: ${moment(oldTime.start).from(moment().unix(), true)}\nNEW STATUS: ${newMember.status}\n-------------`;
+           
+                (async () => {
+                    const channel = await bot.channels.fetch(WATCH_CHANNEL_ID);
+                    channel.send(message);
+                })();
+            }
+    
+            timeDB = timeDB.map((time) => 
+                time.id === oldMember.userID
+                    ? { ...time, start: moment().unix(), status: newMember.status }
+                    : time
+            );
         }
-
-        timeDB = timeDB.map((time) => 
-            time.id === oldMember.userID
-                ? { ...time, start: moment().unix(), status: newMember.status }
-                : time
-        );
     }
 });
