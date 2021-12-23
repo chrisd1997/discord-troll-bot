@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const logger = require('winston');
+const moment = require('moment');
 const auth = require('../auth.json');
 
 // Configure logger settings
